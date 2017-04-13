@@ -27,7 +27,6 @@ static ZSCDetectNetWork *instance = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
         instance.addView = nil;
         instance.status = 10;
         instance = [[[self class] alloc] init];
@@ -68,6 +67,7 @@ static ZSCDetectNetWork *instance = nil;
         case NotReachable:
             NSLog(@"没有联网");
             
+            instance.backgroundColor = [UIColor colorWithRed:239/255.0 green:239/255.0 blue:244/255.0 alpha:1];
             instance.frame = instance.addView.frame;
             [instance.addView addSubview:instance];
             
