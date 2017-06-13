@@ -91,6 +91,7 @@ static ZSCDetectNetWork *instance = nil;
             NSLog(@"连接的是WIFI");
             
             [instance removeFromSuperview];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
             
             break;
             
@@ -98,18 +99,21 @@ static ZSCDetectNetWork *instance = nil;
             NSLog(@"连接的是4G");
             
             [instance removeFromSuperview];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
             break;
             
         case ReachableVia3G:
             NSLog(@"连接的是3G");
             
             [instance removeFromSuperview];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
             break;
             
         case ReachableVia2G:
             NSLog(@"连接的是2G");
             
             [instance removeFromSuperview];
+            [[NSNotificationCenter defaultCenter] removeObserver:self name:kReachabilityChangedNotification object:nil];
             break;
             
         default:
@@ -120,7 +124,6 @@ static ZSCDetectNetWork *instance = nil;
 - (void)refreshNetwork {
     
     instance.reachability = [Reachability reachabilityWithHostName:@"baidu.com"];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityStatus) name:kReachabilityChangedNotification object:nil];
     // 3.开始对网络的检测
     [instance.reachability startNotifier];
 }
